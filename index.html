@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Amira 🎂</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #ff4e8d, #ff9ecf);
+    color: white;
+    overflow: hidden;
+}
+
+/* صفحة الباسورد */
+#loginPage {
+    margin-top: 150px;
+}
+
+input {
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #ff2f6d;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+#mainContent {
+    display: none;
+    margin-top: 60px;
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+h1 {
+    font-size: 45px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 25px gold; }
+}
+
+#counter {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+/* بلالين */
+.balloon {
+    position: absolute;
+    bottom: -100px;
+    font-size: 30px;
+    animation: rise 8s linear infinite;
+}
+
+@keyframes rise {
+    to { transform: translateY(-110vh); }
+}
+
+/* قلوب */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* ألعاب نارية */
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    to {
+        transform: scale(25);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loginPage">
+    <h2>🔒 ادخلي تاريخ ميلادك 🎂</h2>
+    <input type="password" id="password" placeholder="09062009">
+    <br>
+    <button onclick="checkPassword()">دخول 💖</button>
+    <p id="error"></p>
+</div>
+
+<div id="mainContent">
+    <h1>🎉 Happy Birthday Amira 🎂💖</h1>
+
+    <p style="font-size:70px;">👫</p>
+
+    <p id="counter"></p>
+    <button onclick="showLove()">اضغطي هنا يا أجمل بنت ✨</button>
+    <p id="message"></p>
+
+    <!-- الأغنية -->
+    <iframe width="0" height="0"
+        src="https://www.youtube.com/embed/0XhYkYxHkW0?autoplay=1&loop=1&playlist=0XhYkYxHkW0"
+        frameborder="0" allow="autoplay">
+    </iframe>
+</div>
+
+<script>
+
+// باسورد
+function checkPassword() {
+    if (document.getElementById("password").value === "09062009") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        launchFireworks();
+    } else {
+        document.getElementById("error").innerHTML = "غلط 🙈 جربي تاني";
+    }
+}
+
+// عداد من 23/11/2024
+const startDate = new Date("2024-11-23");
+const today = new Date();
+const diffTime = Math.abs(today - startDate);
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+document.getElementById("counter").innerHTML =
+"بقالنا مع بعض " + diffDays + " يوم ولسه أحلى أيام جاية ❤️";
+
+// رسائل
+function showLove() {
+    const messages = [
+        "كل سنة وأنتِ أجمل حاجة في حياتي 🎂",
+        "أنا محظوظ إنك معايا يا Amira ❤️",
+        "ضحكتك هي أحلى حاجة في يومي 💕",
+        "وجودك في حياتي نعمة ✨"
+    ];
+    const random = messages[Math.floor(Math.random() * messages.length)];
+    document.getElementById("message").innerHTML = random;
+}
+
+// بلالين
+function createBalloon() {
+    const balloon = document.createElement("div");
+    balloon.classList.add("balloon");
+    balloon.innerHTML = "🎈";
+    balloon.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(balloon);
+    setTimeout(() => balloon.remove(), 8000);
+}
+setInterval(createBalloon, 700);
+
+// قلوب
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 500);
+
+// ألعاب نارية ملونة
+function launchFireworks() {
+    const colors = ["red","yellow","white","cyan","orange","pink"];
+    for (let i = 0; i < 25; i++) {
+        const firework = document.createElement("div");
+        firework.classList.add("firework");
+        firework.style.background = colors[Math.floor(Math.random()*colors.length)];
+        firework.style.left = Math.random() * 100 + "vw";
+        firework.style.top = Math.random() * 60 + "vh";
+        document.body.appendChild(firework);
+        setTimeout(() => firework.remove(), 1000);
+    }
+}
+
+</script>
+
+</body>
+</html>
